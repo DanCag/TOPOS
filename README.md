@@ -20,7 +20,9 @@ tar xvf <compressed archive>
 ```
 (you should see new directories with same name of compressed archives after doing this)
 
-6. Create the conda environment: `conda env create -f ./topos.yml`
+6. Create the conda environment: `conda env create -f ./topos.yml`  
+The installation of required packages takes around 10 minutes.
+
 7. Activate the environment `conda activate TOPOS`
 
 
