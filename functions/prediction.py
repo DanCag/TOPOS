@@ -4,15 +4,15 @@ import numpy as np
 
 # tumor detector predictions
 def predict( 
-    testing_nrmlz,
+    test_nrmlz,
     clf,
     encdr,
     prediction_file):
     
-    """Predict either tumor vs non-tumor or TOO
+    """Predict TOO
     
     Keyword arguments
-    testing_nrmlz -- sample-wise + feature-wise normalized testing matrix
+    test_nrmlz -- sample-wise + feature-wise normalized test matrix
     clf -- trained classifier object
     encdr -- encoder object
     prediction_file -- path of prediction file (tab-separated file)
@@ -27,11 +27,12 @@ def predict(
     # predictions dataframe
     preds = pd.Series(
         encdr.inverse_transform(
-            clf.predict(testing_nrmlz)), 
-        index = testing_nrmlz.index, 
+            clf.predict(test_nrmlz)), 
+        index = test_nrmlz.index, 
         name = "best_prediction")
     
     # write prediction to tsv file
     preds.to_csv(
         prediction_file,
-        sep = '\t')
+        sep = '\t', 
+        index_label = 'sample')

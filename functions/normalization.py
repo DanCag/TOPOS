@@ -1,32 +1,31 @@
-## Import packages ##
-
+# Modules
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import scale
 
 
-# normalize testing dataset
+# normalize test dataset function
 def normalize(
-    training_exp,
-    testing_exp_path,
+    train_exp,
+    test_exp_path,
     gene_list_path = ''):
     
-    """Normalize testing dataset
+    """Normalize test dataset
     
     Keyword arguments
-    training_exp_path -- training expression matrix
-    testing_exp_path -- path of testing expression matrix samples x entrez gene id (tab-separated file)
+    train_exp_path -- train expression matrix
+    test_exp_path -- path of test expression matrix samples x entrez gene id (tab-separated file)
     gene_list_path -- path of gene list file (tab-separated file)
     """
     
     
     ## Import data
         
-    # testing #
+    # test #
     
-    # testing matrix
-    testing = pd.read_table(
-        testing_exp_path,
+    # test matrix
+    test = pd.read_table(
+        test_exp_path,
         index_col = 0)
     
     
@@ -42,60 +41,60 @@ def normalize(
             names = ['gene'], 
             dtype = 'str')
 
-        # intersection of genes in training and testing matrixes
-        training_testing_genes = np.intersect1d(
-            training_exp.columns.to_numpy(), # numpy array of genes in training matrix
-            testing.columns.to_numpy() # numpy array of genes in testing matrix
+        # intersection of genes in train and test matrixes
+        train_test_genes = np.intersect1d(
+            train_exp.columns.to_numpy(), # numpy array of genes in train matrix
+            test.columns.to_numpy() # numpy array of genes in test matrix
         )
 
-        # intersection of genes in list and training and testing matrixes
+        # intersection of genes in gene_list and train and test matrixes
         common_genes = np.intersect1d(
             gene_list['gene'].to_numpy(),# numpy array of genes in gene list
-            training_testing_genes
+            train_test_genes
         )
         
-        # subset training
-        training_common = training_exp.loc[:, common_genes]
+        # subset train
+        train_common = train_exp.loc[:, common_genes]
         
-        # subset testing
-        testing_common = testing.loc[:, common_genes]
+        # subset test
+        test_common = test.loc[:, common_genes]
     
     else:
         
-        # intersection of genes in list, training and testing matrixes
+        # intersection of genes in gene_list, train and test matrixes
         common_genes = np.intersect1d(
-            training_exp.columns.to_numpy(), # numpy array of genes in training matrix
-            testing.columns.to_numpy() # numpy array of genes in testing matrix
+            train_exp.columns.to_numpy(), # numpy array of genes in train matrix
+            test.columns.to_numpy() # numpy array of genes in test matrix
         )
 
-        # subset training
-        training_common = training_exp.loc[:, common_genes]
+        # subset train
+        train_common = train_exp.loc[:, common_genes]
         
-        # subset testing
-        testing_common = testing.loc[:, common_genes]
+        # subset test
+        test_common = test.loc[:, common_genes]
         
         
     ## Normalization
     
     # Scale datasets sample-wise
     
-    # training
+    # train
     x_train_sw = pd.DataFrame(
         scale(
-            X = training_common, 
+            X = train_common, 
             axis = 1), 
-        index = training_common.index, 
-        columns = training_common.columns)
+        index = train_common.index, 
+        columns = train_common.columns)
     
-    # testing
+    # test
     x_test_sw = pd.DataFrame(
         scale(
-            X = testing_common, 
+            X = test_common, 
             axis = 1), 
-        index = testing_common.index, 
-        columns = testing_common.columns)
+        index = test_common.index, 
+        columns = test_common.columns)
     
-    # Mean - stardard deviation table of training matrix
+    # Mean - stardard deviation table of train matrix
     
     # mean - sd table
     mean_sd = pd.concat(
@@ -107,10 +106,10 @@ def normalize(
     mean_sd.columns = ['mean', 'sd']
     
     
-    # Scale testing dataset feature wise
+    # Scale test dataset feature wise
     x_test_sw_fw = pd.DataFrame(
         (x_test_sw - mean_sd.loc[x_test_sw.columns,'mean'])/(mean_sd.loc[x_test_sw.columns,'sd']),
-        index = testing_common.index, 
-        columns = testing_common.columns)
+        index = test_common.index, 
+        columns = test_common.columns)
     
     return x_test_sw_fw
