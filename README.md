@@ -9,7 +9,7 @@ Get TOPOS ready
 You need to have Conda installed as a prerequisite (the conda version I have installed is the 23.7.3).
 
 1. Download TOPOS repository: `git clone https://github.com/DanCag/TOPOS` (you should see a new directory called `TOPOS`)
-2. Download necessary files (`required_data.tar.gz`, `test_set.tar.gz`) from [zenodo](https://zenodo.org/record/7607666#.Y9_hKhzMJhE)
+2. Download necessary files (`required_data.tar.gz`, `test_set.tar.gz`) from [zenodo](https://zenodo.org/records/10469602)
 3. Move files into `TOPOS` directory
 4. Go inside TOPOS directory with `cd TOPOS`
 5. Extract the compressed archive `required_data.tar.gz` and the `test_set.tar.gz`:
@@ -20,7 +20,6 @@ tar xvf <compressed archive>
 (you should see new directories with same name of compressed archives after doing this)
 
 6. Create the conda environment: `conda env create -f ./TOPOS.yml`  
-The installation of required packages takes around 10 minutes.
 
 7. Activate the environment `conda activate TOPOS`
 
@@ -29,7 +28,7 @@ Data
 * `required_data` contains the necessary files for running TOPOS 
 * `test_set` contains the test set used in the study 
 and a the ccle test set that is used as example in this tutorial. The test set file is heavy (7.9 GB) 
-and it needs strong computational resources to be imported and processed. To run TOPOS on this file I have used a workstation with a RAM of 188 GB and 48 cores.  
+and it needs strong computational resources to be imported and processed. To run TOPOS on this file I have used a workstation with a RAM of 188 GB and 48 cores and the computation took ~ 20 minutes.  
 
 Usage
 -----
