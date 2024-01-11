@@ -55,10 +55,6 @@ args = parser.parse_args()
 sys.path.append('./functions')
 
 
-print('You are running TOPOS in\n')
-print(' ++++++++++++++++++++++\n', 
-      '+ TOO detection mode +\n', 
-      '++++++++++++++++++++++')
 print('\n')
 
 
