@@ -6,13 +6,13 @@ A versatile support vector machine (SVM) to predict the tissue of origin (TOO) o
 Get TOPOS ready
 ---------------
 
-You need to have Conda installed as a prerequisite.
+You need to have Conda installed as a prerequisite (the conda version I have installed is the 23.7.3).
 
 1. Download TOPOS repository: `git clone https://github.com/DanCag/TOPOS` (you should see a new directory called `TOPOS`)
 2. Download necessary files (`required_data.tar.gz`, `playground.tar.gz`, `test`) from [zenodo](https://zenodo.org/record/7607666#.Y9_hKhzMJhE)
 3. Move files into `TOPOS` directory
-4. Go inside TOPOS directory: `cd TOPOS`
-5. Extract each compressed archive `required_data.tar.gz`, `playground.tar.gz`, `test`:
+4. Go inside TOPOS directory with `cd TOPOS`
+5. Extract the compressed archive `required_data.tar.gz` and the `test_set.tar.gz`:
 
 ```
 tar xvf <compressed archive>
@@ -26,32 +26,31 @@ The installation of required packages takes around 10 minutes.
 
 Data
 ----
-* `required_data` contains all necessary files for running TOPOS commands
-* `playground` contains all the datasets used in the study
-* `test` is a folder that can be use to run some tests
+* `required_data` contains the necessary files for running TOPOS 
+* `test_set` contains the test set and test labels files used in the study
 
 Usage
 -----
 
-The model trains a SVM to distinguish between 15 different TOOs and make a prediction on user expression dataset.
+The model trains a SVM to distinguish between 15 different TOOs and make a prediction on an gene expression dataset.
 
 ### Example
 > Train and test TOPOS with all genes in common between train and test set
 ```
-./topos.py -i ../ccle/output/test/ccle_test-15.tsv -p ./prova_output
+./topos.py -i ./test_set/test_exp.tsv -p ./predictions/P_test_set.tsv
 ```
 <br>
 
 > Train and test TOPOS with genes in common between train, test set and a list of genes of interest
 ```
-./topos.py -i ../ccle/output/test/ccle_test-15.tsv -g ./gene_list.txt -p ./prova_output
+./topos.py -i ./test_set/test_exp.tsv -g ./gene_list.txt -p ./predictions/P_test_set.tsv
 ```
 <br>
 
 **Required parameters**
 
 - `-i`, `--input_test_matrix`<br>
-User's test expression matrix pathway in the following format
+User's test expression matrix pathway. The file must be tab-separated with rows as samples and columns as genes (named with Entrez gene ids). Columns and samples must be named, so there will be a column and a row index.<br> Below you see how the expression file must look like:
 
 
 | | | | |  |
@@ -62,10 +61,7 @@ User's test expression matrix pathway in the following format
 | ...     | 
 | sample_n |
 
-The file is tab-separated. Rows are samples and columns are genes (named with Entrez gene ids).<br>
-Columns and samples must be named, so there will be a column and a row index.<br>
 
-You can find the input files used in the study in the folder `./playground/datasets/`.
 
 - `-p`, `--prediction_directory`<br>
 Prediction directory where to store prediction file
