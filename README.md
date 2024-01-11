@@ -27,7 +27,9 @@ The installation of required packages takes around 10 minutes.
 Data
 ----
 * `required_data` contains the necessary files for running TOPOS 
-* `test_set` contains the test set and test labels files used in the study
+* `test_set` contains the test set used in the study 
+and a the ccle test set that is used as example in this tutorial. The test set file is heavy (7.9 GB) 
+and it needs strong computational resources to be imported and processed. To run TOPOS on this file I have used a workstation with a RAM of 188 GB and 48 cores.  
 
 Usage
 -----
@@ -37,14 +39,17 @@ The model trains a SVM to distinguish between 15 different TOOs and make a predi
 ### Example
 > Train and test TOPOS with all genes in common between train and test set
 ```
-./topos.py -i ./test_set/test_exp.tsv -p ./predictions/P_test_set.tsv
+./topos.py -i ./test_set/ccle_test_exp.tsv -p ./predictions
 ```
+
+Runtime: ~ 2 minutes
 <br>
 
 > Train and test TOPOS with genes in common between train, test set and a list of genes of interest
 ```
-./topos.py -i ./test_set/test_exp.tsv -g ./gene_list.txt -p ./predictions/P_test_set.tsv
+./topos.py -i ./test_set/ccle_test_exp.tsv -g ./required_data/top-250-genes.txt -p ./predictions
 ```
+Runtime on a test set : ~ 0.1 minute
 <br>
 
 **Required parameters**
@@ -73,7 +78,7 @@ Prediction directory where to store prediction file
 path of gene list file. The file contains genes (entrez gene ids) to use for train and test.<br>
 If not provided, TOPOS will use the overlap between train and test genes.
 
-*Runtime*: ~ 1 minute
+
 
 ### Runtime tests
 
