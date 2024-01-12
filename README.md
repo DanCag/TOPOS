@@ -9,10 +9,10 @@ Get TOPOS ready
 You need to have Conda installed as a prerequisite (the conda version I have installed is the 23.7.3).
 
 1. Download TOPOS repository: `git clone https://github.com/DanCag/TOPOS` (you should see a new directory called `TOPOS`)
-2. Download necessary files (`required_data.tar.gz`, `test_set_toy.tar.gz`) from [zenodo](https://zenodo.org/records/10469602)
+2. Download necessary files (`required_data.tar.gz`, `test_set_instancet.tar.gz`) from [zenodo](https://zenodo.org/records/10498070)
 3. Move files into `TOPOS` directory
 4. Go inside TOPOS directory with `cd TOPOS`
-5. Extract the compressed archive `required_data.tar.gz` and the `test_set_toy.tar.gz`:
+5. Extract the compressed archive `required_data.tar.gz` and the `test_set_instance.tar.gz`:
 
 ```
 tar xvf <compressed archive>
@@ -26,7 +26,7 @@ tar xvf <compressed archive>
 Data
 ----
 * `required_data` contains the necessary files for running TOPOS 
-* `test_set_toy` contains the CCLE test set that is used as example in this tutorial. 
+* `test_set_instance` contains the CCLE test set that is used as example in this tutorial. 
 
 Usage
 -----
@@ -36,17 +36,17 @@ The model trains a SVM to distinguish between 15 different TOOs and make a predi
 ### Example
 > Train and test TOPOS with all genes in common between train and test set
 ```
-./topos.py -i ./test_set_toy/ccle_test_exp.tsv -p ./predictions
+./topos.py -i ./test_set_instance/ccle_test_exp.tsv -p ./predictions
 ```
 
-Runtime: ~ 2 minutes
+Runtime ~ 2 minutes
 <br>
 
 > Train and test TOPOS with genes in common between train, test set and a list of genes of interest
 ```
-./topos.py -i ./test_set_toy/ccle_test_exp.tsv -g ./required_data/top-250-genes.txt -p ./predictions
+./topos.py -i ./test_set_instance/ccle_test_exp.tsv -g ./test_set_instance/top-250-genes.txt -p ./predictions
 ```
-Runtime on a test set : ~ 0.1 minute
+Runtime ~ 0.1 minute
 <br>
 
 **Required parameters**
