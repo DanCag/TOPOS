@@ -6,18 +6,13 @@ A versatile support vector machine (SVM) to predict the tissue of origin (TOO) o
 Get TOPOS ready
 ---------------
 
-You need to have Conda installed as a prerequisite (the conda version I have installed is the 23.7.3).
+You need to have Conda installed as a prerequisite (we have used version 23.7.3).
 
-1. Download TOPOS repository: `git clone https://github.com/DanCag/TOPOS` (you should see a new directory called `TOPOS`)
-2. Download necessary files (`required_data.tar.gz`, `test_set_instancet.tar.gz`) from [zenodo](https://zenodo.org/records/10498070)
+1. Download TOPOS repository: `git clone https://github.com/DanCag/TOPOS.git` (you should see a new directory called `TOPOS`)
+2. Download necessary files (`required_data.tar.gz`, `test_set_instance.tar.gz`) from [zenodo](https://zenodo.org/records/10498070)
 3. Move files into `TOPOS` directory
-4. Go inside TOPOS directory with `cd TOPOS`
-5. Extract the compressed archive `required_data.tar.gz` and the `test_set_instance.tar.gz`:
-
-```
-tar xvf <compressed archive>
-```
-(you should see new directories with same name of compressed archives after doing this)
+4. Go to `TOPOS` directory
+5. Extract the compressed archives `required_data.tar.gz` and the `test_set_instance.tar.gz`. You should see new directories called `required_data` and `test_set_instance`.
 
 6. Create the conda environment: `conda env create -f ./TOPOS.yml`  
 
@@ -25,8 +20,8 @@ tar xvf <compressed archive>
 
 Data
 ----
-* `required_data` contains the necessary files for running TOPOS 
-* `test_set_instance` contains the CCLE test set that is used as example in this tutorial. 
+* `required_data` contains the train matrix and the train labels files necessary to run TOPOS 
+* `test_set_instance` contains an instance of test set and a file with the list of top 275 genes identified in the study
 
 Usage
 -----
