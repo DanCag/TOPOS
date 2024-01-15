@@ -8,7 +8,7 @@ Get TOPOS ready
 
 You need to have Conda installed as a prerequisite (we have used version 23.7.3).
 
-1. Download TOPOS repository: `git clone https://github.com/DanCag/TOPOS.git` (you should see a new directory called `TOPOS`)
+1. Download TOPOS repository with `git clone https://github.com/DanCag/TOPOS.git`. You should see a new directory called `TOPOS`.
 2. Download necessary files (`required_data.tar.gz`, `test_set_instance.tar.gz`) from [zenodo](https://zenodo.org/records/10512461)
 3. Move files into `TOPOS` directory
 4. Go to `TOPOS` directory
