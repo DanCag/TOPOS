@@ -39,7 +39,7 @@ Runtime ~ 2 minutes
 
 > Train and test TOPOS with genes in common between train, test set and a list of genes of interest
 ```
-./topos.py -i ./test_set_instance/ccle_test_exp.tsv -g ./test_set_instance/top-250-genes.txt -p ./predictions
+./topos.py -i ./test_set_instance/ccle_test_exp.tsv -g ./test_set_instance/top-275-genes.txt -p ./predictions
 ```
 Runtime ~ 0.1 minute
 <br>
